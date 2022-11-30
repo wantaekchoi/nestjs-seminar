@@ -4,6 +4,7 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  InternalServerErrorException,
   Param,
   Patch,
 } from '@nestjs/common';
@@ -20,9 +21,7 @@ export class LoginController {
     try {
       return this.loginService.login(loginDto);
     } catch (error) {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR, {
-        cause: new Error(error),
-      });
+      throw new InternalServerErrorException(error);
     }
   }
 }

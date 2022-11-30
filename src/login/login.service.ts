@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UsersRepository } from '../user-repository/users.repository';
+import { UsersRepository } from '../in-memory-repository/users.repository';
 import { LoginDto } from '../dto/login-dto';
 
 @Injectable()

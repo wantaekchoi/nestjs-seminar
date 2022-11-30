@@ -8,6 +8,7 @@ import {
   Delete,
   HttpException,
   HttpStatus,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -22,9 +23,7 @@ export class UsersController {
     try {
       return this.usersService.create(createUserDto);
     } catch (error) {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR, {
-        cause: new Error(error),
-      });
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -33,9 +32,7 @@ export class UsersController {
     try {
       return this.usersService.findAll();
     } catch (error) {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR, {
-        cause: new Error(error),
-      });
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -44,9 +41,7 @@ export class UsersController {
     try {
       return this.usersService.findOne(email);
     } catch (error) {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR, {
-        cause: new Error(error),
-      });
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -57,9 +52,7 @@ export class UsersController {
         throw new Error(this.constructor.name + ': invalid param');
       return this.usersService.update(updateUserDto);
     } catch (error) {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR, {
-        cause: new Error(error),
-      });
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -68,9 +61,7 @@ export class UsersController {
     try {
       return this.usersService.remove(email);
     } catch (error) {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR, {
-        cause: new Error(error),
-      });
+      throw new InternalServerErrorException(error);
     }
   }
 }

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  server:
+    container_name: nestjs-seminar
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "11000:3000"
